@@ -1,6 +1,6 @@
 self.__precacheManifest = (self.__precacheManifest || []).concat([
   {
-    "revision": "653788079377d4147f8856ea57dc6199",
+    "revision": "a5763589288ed52701bf12b75d43641e",
     "url": "/arth-pracs-app/index.html"
   },
   {
@@ -16,8 +16,8 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/arth-pracs-app/static/js/2.3f36de1a.chunk.js.LICENSE.txt"
   },
   {
-    "revision": "31f5a5b0d5f3fb1b40b5",
-    "url": "/arth-pracs-app/static/js/main.9bddbd9f.chunk.js"
+    "revision": "b13cd5ee02efcd522025",
+    "url": "/arth-pracs-app/static/js/main.c0ae1937.chunk.js"
   },
   {
     "revision": "9ab191add9213d53b712",
