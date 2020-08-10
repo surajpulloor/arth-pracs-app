@@ -33,13 +33,13 @@ class Problem extends Component {
                 res = this.props.num1 + this.props.num2;
                 break;
             case '-':
-                res = this.props.num1 + this.props.num2;
+                res = this.props.num1 - this.props.num2;
                 break;
             case '*':
-                res = this.props.num1 + this.props.num2;
+                res = this.props.num1 * this.props.num2;
                 break;
             case '/':
-                res = this.props.num1 + this.props.num2;
+                res = this.props.num1 / this.props.num2;
                 break;
         }
 
