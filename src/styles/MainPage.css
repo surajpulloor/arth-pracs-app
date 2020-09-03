@@ -1,0 +1,20 @@
+
+.sameRangeCheckbox {
+    display: inline-block !important;
+}
+
+.num2RangeLabel {
+    margin-bottom: 10px;
+}
+
+span.label {
+    margin-right: 10px;
+}
+
+span.leftParen {
+    margin-right: 5px;
+}
+
+span.rightParen {
+    margin-left: 5px;
+}
