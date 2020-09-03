@@ -90,6 +90,7 @@ class MainPage extends Component {
                                             }
                                         }
                                         className="form-control" 
+                                        autoFocus
                                 />
                             </div>
 
