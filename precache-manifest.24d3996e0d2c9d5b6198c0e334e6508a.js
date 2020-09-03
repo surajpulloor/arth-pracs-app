@@ -1,6 +1,6 @@
 self.__precacheManifest = (self.__precacheManifest || []).concat([
   {
-    "revision": "f666d6f44cd5835f313ecd40b28c0067",
+    "revision": "9639789852180906683e22e040105a0d",
     "url": "/arth-pracs-app/index.html"
   },
   {
