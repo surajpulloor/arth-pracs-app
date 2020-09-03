@@ -33,10 +33,9 @@ class MainPage extends Component {
 
     onSubmit = (e) => {
         // call props.onStart
-        this.props.onSetup(this.state);
+        this.props.onSetup(this.state.data);
 
         e.preventDefault();
-        console.log(this.state);
 
         this.props.history.push('/practise');
     }
