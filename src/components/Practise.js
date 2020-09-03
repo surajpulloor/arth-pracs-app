@@ -41,11 +41,17 @@ class Practise extends Component {
                 )
             ) + this.props.setupInfo.num1Range.from;
 
-        let num2 =  Math.floor(
-            Math.random() * (
-                this.props.setupInfo.num2Range.to - this.props.setupInfo.num2Range.from
-                )
-            ) + this.props.setupInfo.num2Range.from;
+        
+        let num2 = 0;
+
+        do {
+            num2 =  Math.floor(
+                Math.random() * (
+                    this.props.setupInfo.num2Range.to - this.props.setupInfo.num2Range.from
+                    )
+                ) + this.props.setupInfo.num2Range.from;
+
+        } while (num1 <= num2);
         
 
         this.setState((state, props) => {
