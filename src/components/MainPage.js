@@ -8,8 +8,14 @@ class MainPage extends Component {
         super(props);
 
         this.state = {
-            num1Len: 1,
-            num2Len: 1,
+            num1Range: {
+                from: "",
+                to: "",
+            },
+            num2Range: {
+                from: "",
+                to: "",
+            },
             op: '',
         };
     }
@@ -39,22 +45,95 @@ class MainPage extends Component {
 
                 <form onSubmit={this.onSubmit}>
                     <div className="form-group">
-                        <label htmlFor="num1Len">Num1 Length</label>
-                        <input type="number" min="1" max="10" 
-                                placeholder="Enter no. of digits" value={this.state.num1Len} 
-                                id="num1Len" onChange={ e => this.setState({ num1Len: parseInt(e.target.value) })}
-                                className="form-control" 
-                        />
+                        <label>Num1 Range</label>
+                        <div className="row">
+                            <div className="col-md-3">
+                                <input type="number" min="1" max="10000" 
+                                        placeholder="From" value={this.state.num1Range.from} 
+                                        id="num1From" onChange={ 
+                                            e => {
+                                                
+                                                this.setState(prevState => { 
+                                                    const num1Range = Object.assign({}, this.state.num1Range);
+                                                    num1Range.from = parseInt(e.target.value);
+
+                                                    return {num1Range};
+                                                });
+
+                                                e.persist();
+                                            }
+                                        }
+                                        className="form-control" 
+                                />
+                            </div>
+
+                            <div className="col-md-3">
+                                <input type="number" min="1" max="10000" 
+                                        placeholder="To" value={this.state.num1Range.to} 
+                                        id="num1To" onChange={ 
+                                            e => {
+                                                
+                                                this.setState(prevState => ({ 
+                                                    num1Range: {
+                                                        ...prevState.num1Range,
+                                                        to: parseInt(e.target.value)
+                                                    }
+                                                }));
+
+                                                e.persist();
+                                            }
+                                        }
+                                        className="form-control" 
+                                />
+                            </div>
+                        
+                        </div>
+                        
                     </div>
 
                     <div className="form-group">
-                        <label htmlFor="num2Len">Num2 Length</label>
-                        <input type="number" min="1" max="10" 
-                                placeholder="Enter no. of digits" value={this.state.num2Len}
-                                id="num2Len" onChange={ e => this.setState({ num2Len: parseInt(e.target.value) })} 
-                                className="form-control"
-                            required
-                        />
+                        <label>Num2 Range</label>
+                        <div className="row">
+                            <div className="col-md-3">
+                                <input type="number" min="1" max="10000" 
+                                        placeholder="From" value={this.state.num2Range.from} 
+                                        id="num2From" onChange={ 
+                                            e => {
+                                                
+                                                this.setState(prevState => { 
+                                                    const num2Range = Object.assign({}, this.state.num2Range);
+                                                    num2Range.from = parseInt(e.target.value);
+
+                                                    return {num2Range};
+                                                });
+
+                                                e.persist();
+                                            }
+                                        }
+                                        className="form-control" 
+                                />
+                            </div>
+
+                            <div className="col-md-3">
+                                <input type="number" min="1" max="10000" 
+                                        placeholder="To" value={this.state.num2Range.to} 
+                                        id="num2To" onChange={ 
+                                            e => {
+                                                
+                                                this.setState(prevState => ({ 
+                                                    num2Range: {
+                                                        ...prevState.num2Range,
+                                                        to: parseInt(e.target.value)
+                                                    }
+                                                }));
+
+                                                e.persist();
+                                            }
+                                        }
+                                        className="form-control" 
+                                />
+                            </div>
+                        </div>
                     </div>
 
                     <div className="form-check">

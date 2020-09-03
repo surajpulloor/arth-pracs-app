@@ -10,9 +10,6 @@ class Practise extends Component {
         super(props);
 
         this.state = {
-            num1Len: 0,
-            num2Len: 0,
-            op: '',
 
             num1: 0,
             num2: 0,
@@ -27,34 +24,28 @@ class Practise extends Component {
     }
 
     componentDidMount() {
-        
-        this.props.clearProblems();
-
-        this.setState((state, props) => {
-            return {
-                num1Len: props.setupInfo.num1Len,
-                num2Len: props.setupInfo.num2Len,
-                op: props.setupInfo.op
-            }
-        }, () => {
+        if (
+            this.props.setupInfo.num1Range !== undefined && 
+            this.props.setupInfo.num2Range !== undefined && 
+            this.props.setupInfo.op !== undefined
+        ) {
+            this.props.clearProblems();
             this.genProblems();
-        });
+        }
     }
 
     genProblems = () => {
-        let num1 = 0;
-        let num2 = 0;
+        let num1 = Math.floor(
+            Math.random() * (
+                this.props.setupInfo.num1Range.to - this.props.setupInfo.num1Range.from
+                )
+            ) + this.props.setupInfo.num1Range.from;
 
-
-        for (let i = 1; i <= this.state.num1Len; i++) {
-            num1 *= 10;
-            num1 += Math.floor(Math.random() * (9 - 1)) + 1;
-        }
-
-        for (let i = 1; i <= this.state.num2Len; i++) {
-            num2 *= 10;
-            num2 += Math.floor(Math.random() * (9 - 1)) + 1;
-        }
+        let num2 =  Math.floor(
+            Math.random() * (
+                this.props.setupInfo.num2Range.to - this.props.setupInfo.num2Range.from
+                )
+            ) + this.props.setupInfo.num2Range.from;
         
 
         this.setState((state, props) => {
@@ -101,7 +92,11 @@ class Practise extends Component {
         return (
             <div>
                 {
-                    (this.props.setupInfo.num1Len && this.props.setupInfo.num2Len && this.props.setupInfo.op) !== undefined
+                   ( 
+                       this.props.setupInfo.num1Range !== undefined && 
+                       this.props.setupInfo.num2Range !== undefined && 
+                       this.props.setupInfo.op !== undefined
+                    )
                     ?
                     <div>
                         <div className="row">
@@ -114,7 +109,7 @@ class Practise extends Component {
                             </div>
                         </div>
                         <VisibleProblem num1={this.state.num1} num2={this.state.num2}
-                                op={this.state.op} id={this.state.id} 
+                                op={this.props.setupInfo.op} id={this.state.id} 
                                 showResult={false} updateResult={this.updateStore}
                                 stopTimer={this.state.stopProblemTimer} />
 
