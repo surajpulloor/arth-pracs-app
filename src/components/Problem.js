@@ -171,7 +171,7 @@ class Problem extends Component {
                                     <span className="float-right">{ this.props.timeTaken }</span>
                                 </h4>
                             : <div>
-                                <input type="number" placeholder="Please enter your Ans." className="form-control" onKeyDown={this.onEnter} />
+                                <input type="number" placeholder="Please enter your Ans." className="form-control" onKeyDown={this.onEnter} autoFocus />
                             </div>
                         }
 
