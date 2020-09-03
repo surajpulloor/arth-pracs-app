@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import { withRouter } from 'react-router-dom';
 
+import '../styles/MainPage.css';
+
 
 class MainPage extends Component {
 
@@ -8,15 +10,20 @@ class MainPage extends Component {
         super(props);
 
         this.state = {
-            num1Range: {
-                from: "",
-                to: "",
+            data: {
+                num1Range: {
+                    from: '',
+                    to: '',
+                },
+                num2Range: {
+                    from: '',
+                    to: '',
+                },
+                op: '',
             },
-            num2Range: {
-                from: "",
-                to: "",
-            },
-            op: '',
+
+            sameAsNum1Range: false
+            
         };
     }
 
@@ -35,7 +42,14 @@ class MainPage extends Component {
     }
 
     getChoiceValue = (e) => {
-        this.setState({ op: e.target.value });
+        this.setState(prevState => ({
+             data: {
+                 ...prevState.data,
+                 op: e.target.value 
+             }
+        }));
+
+        e.persist();
     }
 
     render() {
@@ -49,15 +63,21 @@ class MainPage extends Component {
                         <div className="row">
                             <div className="col-md-3">
                                 <input type="number" min="1" max="10000" 
-                                        placeholder="From" value={this.state.num1Range.from} 
+                                        placeholder="From" value={this.state.data.num1Range.from} 
                                         id="num1From" onChange={ 
                                             e => {
                                                 
                                                 this.setState(prevState => { 
-                                                    const num1Range = Object.assign({}, this.state.num1Range);
-                                                    num1Range.from = parseInt(e.target.value);
+                                                    const num1Range = Object.assign({}, this.state.data.num1Range);
+                                                    const v = parseInt(e.target.value);
+                                                    num1Range.from = v ? v : "";
 
-                                                    return {num1Range};
+                                                    return {
+                                                        data: {
+                                                            ...prevState.data,
+                                                            num1Range
+                                                        }
+                                                    };
                                                 });
 
                                                 e.persist();
@@ -69,16 +89,27 @@ class MainPage extends Component {
 
                             <div className="col-md-3">
                                 <input type="number" min="1" max="10000" 
-                                        placeholder="To" value={this.state.num1Range.to} 
+                                        placeholder="To" value={this.state.data.num1Range.to} 
                                         id="num1To" onChange={ 
                                             e => {
                                                 
-                                                this.setState(prevState => ({ 
-                                                    num1Range: {
-                                                        ...prevState.num1Range,
-                                                        to: parseInt(e.target.value)
+                                                this.setState(prevState => { 
+
+                                                    const v = parseInt(e.target.value);
+
+
+                                                    return {
+                                                        data: {
+                                                            ...prevState.data,
+                                                            num1Range: {
+                                                                ...prevState.data.num1Range,
+                                                                to:  v ? v : ""
+                                                            }
+                                                        }
                                                     }
-                                                }));
+                                                    
+                                                    
+                                                });
 
                                                 e.persist();
                                             }
@@ -92,19 +123,67 @@ class MainPage extends Component {
                     </div>
 
                     <div className="form-group">
-                        <label>Num2 Range</label>
+
+                        <div className="num2RangeLabel">
+                            <span className="label">Num2 Range</span>
+                            
+                            <span className="leftParen">
+                            (
+                            </span>
+
+                            <div className="custom-control custom-checkbox sameRangeCheckbox">
+                                <input 
+                                    type="checkbox" 
+                                    className="custom-control-input" 
+                                    id="toNum1Range" 
+                                    onClick={ 
+                                        e => {
+                                            e.target.checked 
+
+                                            ? this.setState(prevState => ({
+                                                num2Range: {
+                                                    to: prevState.num1Range.to,
+                                                    from: prevState.num1Range.from
+                                                }
+                                            }))
+                                            :
+                                            this.setState({
+                                                num2Range: {
+                                                    to: "",
+                                                    from: ""
+                                                }
+                                            })
+
+                                        }
+                                    } 
+                                />
+                                <label className="custom-control-label" htmlFor="toNum1Range">Same as Num1 range</label>
+                            </div>
+
+                            <span className="rightParen">
+                            )
+                            </span>
+                        </div>
+                        
+
                         <div className="row">
                             <div className="col-md-3">
                                 <input type="number" min="1" max="10000" 
-                                        placeholder="From" value={this.state.num2Range.from} 
+                                        placeholder="From" value={this.state.data.num2Range.from} 
                                         id="num2From" onChange={ 
                                             e => {
                                                 
                                                 this.setState(prevState => { 
-                                                    const num2Range = Object.assign({}, this.state.num2Range);
-                                                    num2Range.from = parseInt(e.target.value);
+                                                    const num2Range = Object.assign({}, this.state.data.num2Range);
+                                                    const v = parseInt(e.target.value);
+                                                    num2Range.from = v ? v : '';
 
-                                                    return {num2Range};
+                                                    return {
+                                                        data: {
+                                                            ...prevState.data,
+                                                            num2Range
+                                                        }
+                                                    };
                                                 });
 
                                                 e.persist();
@@ -116,16 +195,26 @@ class MainPage extends Component {
 
                             <div className="col-md-3">
                                 <input type="number" min="1" max="10000" 
-                                        placeholder="To" value={this.state.num2Range.to} 
+                                        placeholder="To" value={this.state.data.num2Range.to} 
                                         id="num2To" onChange={ 
                                             e => {
                                                 
-                                                this.setState(prevState => ({ 
-                                                    num2Range: {
-                                                        ...prevState.num2Range,
-                                                        to: parseInt(e.target.value)
+                                                this.setState(prevState => { 
+
+                                                    const v = parseInt(e.target.value);
+
+                                                    return {
+                                                        data: {
+                                                            ...prevState.data,
+                                                            num2Range: {
+                                                                ...prevState.data.num2Range,
+                                                                to: v ? v : ''
+                                                            }
+                                                        }
                                                     }
-                                                }));
+                                                    
+                                                    
+                                                });
 
                                                 e.persist();
                                             }
@@ -139,7 +228,7 @@ class MainPage extends Component {
                     <div className="form-check">
                         <input className="form-check-input" type="radio" 
                             name="operator" id="add" 
-                            value="+" checked={ this.state.op === '+' }
+                            value="+" checked={ this.state.data.op === '+' }
                             onChange={this.getChoiceValue} 
                             required
                         />
@@ -151,7 +240,7 @@ class MainPage extends Component {
                     <div className="form-check">
                         <input className="form-check-input" type="radio" 
                             name="operator" id="subtract" 
-                            value="-" checked={ this.state.op === '-' }
+                            value="-" checked={ this.state.data.op === '-' }
                             onChange={this.getChoiceValue} 
                             required
                         />
@@ -163,7 +252,7 @@ class MainPage extends Component {
                     <div className="form-check">
                         <input className="form-check-input" type="radio" 
                             name="operator" id="multiply" 
-                            value="*" checked={ this.state.op === '*' }
+                            value="*" checked={ this.state.data.op === '*' }
                             onChange={this.getChoiceValue} 
                             required
                         />
@@ -175,7 +264,7 @@ class MainPage extends Component {
                     <div className="form-check">
                         <input className="form-check-input" type="radio" 
                             name="operator" id="divide" 
-                            value="/" checked={ this.state.op === '/' }
+                            value="/" checked={ this.state.data.op === '/' }
                             onChange={this.getChoiceValue} 
                             required
                         />
