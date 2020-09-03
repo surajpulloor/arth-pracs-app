@@ -22,7 +22,8 @@ class MainPage extends Component {
                 op: '',
             },
 
-            sameAsNum1Range: false
+            sameAsNum1Range: false,
+            enableCheckbox: false
             
         };
     }
@@ -80,7 +81,8 @@ class MainPage extends Component {
                                                             ...prevState.data,
                                                             num1Range,
                                                             num2Range
-                                                        }
+                                                        },
+                                                        enableCheckbox: v || prevState.data.num1Range.to !== '' ? true : false
                                                     };
                                                 });
 
@@ -101,7 +103,7 @@ class MainPage extends Component {
 
                                                     const v = parseInt(e.target.value);
 
-
+                                                    const to = v ? v : '';
 
 
                                                     return {
@@ -109,13 +111,14 @@ class MainPage extends Component {
                                                             ...prevState.data,
                                                             num1Range: {
                                                                 ...prevState.data.num1Range,
-                                                                to:  v ? v : ""
+                                                                to
                                                             },
                                                             num2Range: {
                                                                 ...prevState.data.num2Range,
-                                                                to: prevState.sameAsNum1Range && v ? v : prevState.data.num2Range.to
+                                                                to: prevState.sameAsNum1Range ? to : prevState.data.num2Range.to
                                                             }
-                                                        }
+                                                        },
+                                                        enableCheckbox: v || prevState.data.num1Range.from !== '' ? true : false
                                                     }
                                                     
                                                     
@@ -141,11 +144,12 @@ class MainPage extends Component {
                             (
                             </span>
 
-                            <div className="custom-control custom-checkbox sameRangeCheckbox">
+                            <div className="custom-control custom-checkbox sameRangeCheckbox" style={{ color: this.state.enableCheckbox ? 'black' : 'grey'}}>
                                 <input 
                                     type="checkbox" 
                                     className="custom-control-input" 
-                                    id="toNum1Range" 
+                                    id="toNum1Range"
+                                    disabled={!this.state.enableCheckbox}
                                     onClick={ 
                                         e => {
                                             e.target.checked 
