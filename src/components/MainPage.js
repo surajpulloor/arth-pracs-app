@@ -67,14 +67,19 @@ class MainPage extends Component {
                                             e => {
                                                 
                                                 this.setState(prevState => { 
-                                                    const num1Range = Object.assign({}, this.state.data.num1Range);
+                                                    const num1Range = Object.assign({}, prevState.data.num1Range);
                                                     const v = parseInt(e.target.value);
                                                     num1Range.from = v ? v : "";
+
+                                                    const num2Range = Object.assign({}, prevState.data.num2Range);
+                                                    if (prevState.sameAsNum1Range)
+                                                        num2Range.from = num1Range.from;
 
                                                     return {
                                                         data: {
                                                             ...prevState.data,
-                                                            num1Range
+                                                            num1Range,
+                                                            num2Range
                                                         }
                                                     };
                                                 });
@@ -97,12 +102,18 @@ class MainPage extends Component {
                                                     const v = parseInt(e.target.value);
 
 
+
+
                                                     return {
                                                         data: {
                                                             ...prevState.data,
                                                             num1Range: {
                                                                 ...prevState.data.num1Range,
                                                                 to:  v ? v : ""
+                                                            },
+                                                            num2Range: {
+                                                                ...prevState.data.num2Range,
+                                                                to: prevState.sameAsNum1Range && v ? v : prevState.data.num2Range.to
                                                             }
                                                         }
                                                     }
@@ -140,18 +151,27 @@ class MainPage extends Component {
                                             e.target.checked 
 
                                             ? this.setState(prevState => ({
-                                                num2Range: {
-                                                    to: prevState.num1Range.to,
-                                                    from: prevState.num1Range.from
-                                                }
+                                                data: {
+                                                    ...prevState.data,
+                                                    num2Range: {
+                                                        to: prevState.data.num1Range.to,
+                                                        from: prevState.data.num1Range.from
+                                                    }
+                                                },
+                                                sameAsNum1Range: true
                                             }))
                                             :
-                                            this.setState({
-                                                num2Range: {
-                                                    to: "",
-                                                    from: ""
-                                                }
-                                            })
+                                            this.setState(prevState => ({
+                                                data: {
+                                                    ...prevState.data,
+                                                    num2Range: {
+                                                        to: "",
+                                                        from: ""
+                                                    }
+                                                },
+                                                sameAsNum1Range: false
+                                                
+                                            }))
 
                                         }
                                     } 
