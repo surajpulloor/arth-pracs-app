@@ -1,15 +1,15 @@
 {
   "files": {
     "main.css": "/arth-pracs-app/static/css/main.4ea28657.chunk.css",
-    "main.js": "/arth-pracs-app/static/js/main.0bd38c2c.chunk.js",
-    "main.js.map": "/arth-pracs-app/static/js/main.0bd38c2c.chunk.js.map",
+    "main.js": "/arth-pracs-app/static/js/main.7f2f381a.chunk.js",
+    "main.js.map": "/arth-pracs-app/static/js/main.7f2f381a.chunk.js.map",
     "runtime-main.js": "/arth-pracs-app/static/js/runtime-main.693a094b.js",
     "runtime-main.js.map": "/arth-pracs-app/static/js/runtime-main.693a094b.js.map",
     "static/css/2.af3c1da9.chunk.css": "/arth-pracs-app/static/css/2.af3c1da9.chunk.css",
     "static/js/2.cce5d311.chunk.js": "/arth-pracs-app/static/js/2.cce5d311.chunk.js",
     "static/js/2.cce5d311.chunk.js.map": "/arth-pracs-app/static/js/2.cce5d311.chunk.js.map",
     "index.html": "/arth-pracs-app/index.html",
-    "precache-manifest.24d3996e0d2c9d5b6198c0e334e6508a.js": "/arth-pracs-app/precache-manifest.24d3996e0d2c9d5b6198c0e334e6508a.js",
+    "precache-manifest.6de18a9ca132fdfd81adc9e3b44d2bc0.js": "/arth-pracs-app/precache-manifest.6de18a9ca132fdfd81adc9e3b44d2bc0.js",
     "service-worker.js": "/arth-pracs-app/service-worker.js",
     "static/css/2.af3c1da9.chunk.css.map": "/arth-pracs-app/static/css/2.af3c1da9.chunk.css.map",
     "static/css/main.4ea28657.chunk.css.map": "/arth-pracs-app/static/css/main.4ea28657.chunk.css.map",
@@ -20,6 +20,6 @@
     "static/css/2.af3c1da9.chunk.css",
     "static/js/2.cce5d311.chunk.js",
     "static/css/main.4ea28657.chunk.css",
-    "static/js/main.0bd38c2c.chunk.js"
+    "static/js/main.7f2f381a.chunk.js"
   ]
 }

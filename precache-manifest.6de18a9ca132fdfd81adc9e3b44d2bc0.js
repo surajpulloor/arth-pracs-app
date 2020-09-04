@@ -1,6 +1,6 @@
 self.__precacheManifest = (self.__precacheManifest || []).concat([
   {
-    "revision": "9639789852180906683e22e040105a0d",
+    "revision": "eb52599cc59ac55a6bceccc866749e4c",
     "url": "/arth-pracs-app/index.html"
   },
   {
@@ -8,7 +8,7 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/arth-pracs-app/static/css/2.af3c1da9.chunk.css"
   },
   {
-    "revision": "cf1b83d6c8c0bf90721e",
+    "revision": "e67de512c6bf30ed70e8",
     "url": "/arth-pracs-app/static/css/main.4ea28657.chunk.css"
   },
   {
@@ -20,8 +20,8 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/arth-pracs-app/static/js/2.cce5d311.chunk.js.LICENSE.txt"
   },
   {
-    "revision": "cf1b83d6c8c0bf90721e",
-    "url": "/arth-pracs-app/static/js/main.0bd38c2c.chunk.js"
+    "revision": "e67de512c6bf30ed70e8",
+    "url": "/arth-pracs-app/static/js/main.7f2f381a.chunk.js"
   },
   {
     "revision": "9ab191add9213d53b712",
