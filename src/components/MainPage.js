@@ -23,8 +23,14 @@ class MainPage extends Component {
             },
 
             sameAsNum1Range: false,
-            enableCheckbox: false
+            enableCheckbox: false,
+
+            num1ValidationFailure: false,
+            num1ValidationMessage: '',
             
+            num2ValidationFailure: false,
+            num2ValidationMessage: '',
+            num2ValidationMessageTo: ''
         };
     }
 
@@ -33,10 +39,14 @@ class MainPage extends Component {
     }
 
     onSubmit = (e) => {
+        e.preventDefault();
+
+        if (this.state.num1ValidationFailure || this.state.num2ValidationFailure)
+            return false;
+
         // call props.onStart
         this.props.onSetup(this.state.data);
 
-        e.preventDefault();
 
         this.props.history.push('/practise');
     }
@@ -52,6 +62,60 @@ class MainPage extends Component {
         e.persist();
     }
 
+
+    validateNum1Range = () => {
+        if (this.state.data.num1Range.to !== '' && this.state.data.num1Range.from > this.state.data.num1Range.to)
+            this.setState({num1ValidationFailure: true, num1ValidationMessage: "It's greater than Num1's Range \"to\". It has to be less"});
+        else
+            this.setState({num1ValidationFailure: false, num1ValidationMessage: ""});
+    }
+
+
+    validateNum2Range = () => {
+        if (this.state.data.num2Range.to !== '' && this.state.data.num2Range.from > this.state.data.num2Range.to)
+            this.setState({
+                num2ValidationFailure: true, 
+                num2ValidationMessage: "It's greater than Num2's Range \"to\". It has to be less",
+
+                num2ValidationFailureTo: false,
+                num2ValidationMessageTo: ''
+            });
+       
+        else if (
+            this.state.data.num1Range.from !== '' &&
+            this.state.data.num2Range.from > this.state.data.num1Range.from 
+        )
+            this.setState({
+                num2ValidationFailure: true, 
+                num2ValidationMessage: 'Num2 "from" is greater than Num1 "from"',
+
+                num2ValidationFailureTo: false,
+                num2ValidationMessageTo: ''
+            });
+        
+        else if (
+            this.state.data.num1Range.to !== '' &&
+            this.state.data.num2Range.to > this.state.data.num1Range.to 
+        )
+            this.setState({
+                num2ValidationFailureTo: true, 
+                num2ValidationMessageTo: 'Num2 "to" is greater than Num1 "to"',
+
+                num2ValidationFailure: false,
+                num2ValidationMessage: ''
+
+            });
+        
+        else
+            this.setState({
+                num2ValidationFailure: false,
+                num2ValidationMessage: "",
+
+                num2ValidationFailureTo: false,
+                num2ValidationMessageTo: ''
+            });
+    }
+
     render() {
         return (
            <div>
@@ -60,7 +124,7 @@ class MainPage extends Component {
                 <form onSubmit={this.onSubmit}>
                     <div className="form-group">
                         <label>Num1 Range</label>
-                        <div className="row">
+                        <div className="form-row">
                             <div className="col-md-3">
                                 <input type="number" min="1" max="10000" 
                                         placeholder="From" value={this.state.data.num1Range.from} 
@@ -85,14 +149,19 @@ class MainPage extends Component {
                                                         sameAsNum1Range: v || prevState.data.num1Range.to !== '' ? prevState.sameAsNum1Range : false,
                                                         enableCheckbox: v || prevState.data.num1Range.to !== '' ? true : false
                                                     };
-                                                });
+                                                }, this.validateNum1Range);
 
                                                 e.persist();
                                             }
                                         }
-                                        className="form-control" 
+                                        className={this.state.num1ValidationFailure ? "form-control is-invalid" : "form-control"} 
                                         autoFocus
+                                        required
                                 />
+                                
+                                <div className="invalid-feedback" style={{display: this.state.num1ValidationFailure ? 'block' : 'none'}}>
+                                    {this.state.num1ValidationMessage}
+                                </div>
                             </div>
 
                             <div className="col-md-3">
@@ -125,12 +194,13 @@ class MainPage extends Component {
                                                     }
                                                     
                                                     
-                                                });
+                                                }, this.validateNum1Range);
 
                                                 e.persist();
                                             }
                                         }
                                         className="form-control" 
+                                        required
                                 />
                             </div>
                         
@@ -193,7 +263,7 @@ class MainPage extends Component {
                         </div>
                         
 
-                        <div className="row">
+                        <div className="form-row">
                             <div className="col-md-3">
                                 <input type="number" min="1" max="10000" 
                                         placeholder="From" value={this.state.data.num2Range.from} 
@@ -211,13 +281,18 @@ class MainPage extends Component {
                                                             num2Range
                                                         }
                                                     };
-                                                });
+                                                }, this.validateNum2Range);
 
                                                 e.persist();
                                             }
                                         }
-                                        className="form-control" 
+                                        className={this.state.num2ValidationFailure ? "form-control is-invalid" : "form-control"} 
+                                        required
                                 />
+                                
+                                <div className="invalid-feedback" style={{display: this.state.num2ValidationFailure ? 'block' : 'none'}}>
+                                    {this.state.num2ValidationMessage}
+                                </div>
                             </div>
 
                             <div className="col-md-3">
@@ -241,13 +316,18 @@ class MainPage extends Component {
                                                     }
                                                     
                                                     
-                                                });
+                                                }, this.validateNum2Range);
 
                                                 e.persist();
                                             }
                                         }
-                                        className="form-control" 
+                                        className={this.state.num2ValidationFailureTo ? "form-control is-invalid" : "form-control"}
+                                        required
                                 />
+
+                                <div className="invalid-feedback" style={{display: this.state.num2ValidationFailureTo ? 'block' : 'none'}}>
+                                    {this.state.num2ValidationMessageTo}
+                                </div>
                             </div>
                         </div>
                     </div>
