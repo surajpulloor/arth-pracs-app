@@ -28,8 +28,7 @@ class MainPage extends Component {
             num1ValidationFailure: false,
             num1ValidationMessage: '',
             
-            num2ValidationFailure: false,
-            num2ValidationMessage: '',
+            num2ValidationFailureTo: false,
             num2ValidationMessageTo: ''
         };
     }
@@ -41,7 +40,7 @@ class MainPage extends Component {
     onSubmit = (e) => {
         e.preventDefault();
 
-        if (this.state.num1ValidationFailure || this.state.num2ValidationFailure)
+        if (this.state.num1ValidationFailure || this.state.num2ValidationFailure || this.state.num2ValidationFailureTo)
             return false;
 
         // call props.onStart
