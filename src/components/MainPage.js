@@ -279,7 +279,9 @@ class MainPage extends Component {
                                                         data: {
                                                             ...prevState.data,
                                                             num2Range
-                                                        }
+                                                        },
+                                                        sameAsNum1Range: !isNaN(v) && v === prevState.data.num1Range.from && 
+                                                                    prevState.data.num1Range.to === prevState.data.num2Range.to
                                                     };
                                                 }, this.validateNum2Range);
 
@@ -312,7 +314,9 @@ class MainPage extends Component {
                                                                 ...prevState.data.num2Range,
                                                                 to: v ? v : ''
                                                             }
-                                                        }
+                                                        },
+                                                        sameAsNum1Range: !isNaN(v) && v === prevState.data.num1Range.to && 
+                                                                        prevState.data.num1Range.from === prevState.data.num2Range.from
                                                     }
                                                     
                                                     
