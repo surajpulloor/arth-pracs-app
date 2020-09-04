@@ -82,6 +82,7 @@ class MainPage extends Component {
                                                             num1Range,
                                                             num2Range
                                                         },
+                                                        sameAsNum1Range: v || prevState.data.num1Range.to !== '' ? prevState.sameAsNum1Range : false,
                                                         enableCheckbox: v || prevState.data.num1Range.to !== '' ? true : false
                                                     };
                                                 });
@@ -119,6 +120,7 @@ class MainPage extends Component {
                                                                 to: prevState.sameAsNum1Range ? to : prevState.data.num2Range.to
                                                             }
                                                         },
+                                                        sameAsNum1Range: v || prevState.data.num1Range.from !== '' ? prevState.sameAsNum1Range : false,
                                                         enableCheckbox: v || prevState.data.num1Range.from !== '' ? true : false
                                                     }
                                                     
@@ -151,6 +153,7 @@ class MainPage extends Component {
                                     className="custom-control-input" 
                                     id="toNum1Range"
                                     disabled={!this.state.enableCheckbox}
+                                    checked={this.state.sameAsNum1Range}
                                     onClick={ 
                                         e => {
                                             e.target.checked 
