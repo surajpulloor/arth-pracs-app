@@ -31,6 +31,9 @@ class Practise extends Component {
         ) {
             this.props.clearProblems();
             this.genProblems();
+            window.onbeforeunload = (e) => {
+                return 'Do you want to end the exercise?';
+            }
         }
     }
 
@@ -89,6 +92,8 @@ class Practise extends Component {
             this.props.addTimer(this.state.solvedTime);
             
             this.props.history.push('/summary');
+
+            
         } else {
             this.setState({ stopStopWatch: false, stopProblemTimer: false });
         }
