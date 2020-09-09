@@ -146,7 +146,7 @@ class Problem extends Component {
                         { 
                             this.props.showResult 
                             ?   <h4>
-                                    <span>{ this.props.res }</span>
+                                    <span className="result">{ this.props.res }</span>
                                     { 
                                         this.props.res === this.state.res 
                                         ? <FontAwesomeIcon icon={faCheck} style={{ color: 'green', marginLeft: '4px' }} /> 
