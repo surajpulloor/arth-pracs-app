@@ -125,7 +125,7 @@ class MainPage extends Component {
                         <label>Num1 Range</label>
                         <div className="form-row">
                             <div className="col-md-3">
-                                <input type="number" min="1" max="10000" 
+                                <input type="number" min="1" max="100000" 
                                         placeholder="From" value={this.state.data.num1Range.from} 
                                         id="num1From" onChange={ 
                                             e => {
@@ -164,7 +164,7 @@ class MainPage extends Component {
                             </div>
 
                             <div className="col-md-3">
-                                <input type="number" min="1" max="10000" 
+                                <input type="number" min="1" max="100000" 
                                         placeholder="To" value={this.state.data.num1Range.to} 
                                         id="num1To" onChange={ 
                                             e => {
@@ -264,7 +264,7 @@ class MainPage extends Component {
 
                         <div className="form-row">
                             <div className="col-md-3">
-                                <input type="number" min="1" max="10000" 
+                                <input type="number" min="1" max="100000" 
                                         placeholder="From" value={this.state.data.num2Range.from} 
                                         id="num2From" onChange={ 
                                             e => {
@@ -297,7 +297,7 @@ class MainPage extends Component {
                             </div>
 
                             <div className="col-md-3">
-                                <input type="number" min="1" max="10000" 
+                                <input type="number" min="1" max="100000" 
                                         placeholder="To" value={this.state.data.num2Range.to} 
                                         id="num2To" onChange={ 
                                             e => {
