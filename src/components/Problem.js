@@ -2,6 +2,8 @@ import React, { Component } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCheck, faTimes } from '@fortawesome/free-solid-svg-icons';
 
+import '../styles/Problem.css';
+
 class Problem extends Component {
     constructor(props) {
         super(props);
@@ -119,9 +121,7 @@ class Problem extends Component {
                 </div>
 
                 <div className="row">
-                    <div className="col-md-1">
-                    </div>
-                    <div className="col-md-5">
+                    <div className="col-md-5 num1">
                         <h4>
                             {
                                 this.props.num1.toString().length < this.props.num2.toString().length
@@ -133,17 +133,18 @@ class Problem extends Component {
                 </div>
 
                 <div className="row">
-                    <div className="col-md-1">
-                        <h4>{this.props.op}</h4>
-                    </div>
 
                     <div className="col-md-5">
                         <h4>
+                            <span>{this.props.op}</span>
+                            <span>
                             {
                                 this.props.num2.toString().length < this.props.num1.toString().length
                                 ? this.props.num2.toString().padStart(this.props.num1.toString().length, '0')
                                 : this.props.num2.toString()
-                            }    
+                            } 
+                            </span>
+                               
                         </h4>
                         <hr />
                         
