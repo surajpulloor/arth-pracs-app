@@ -146,7 +146,7 @@ class MainPage extends Component {
                                                             num2Range
                                                         },
                                                         sameAsNum1Range: v || prevState.data.num1Range.to !== '' ? prevState.sameAsNum1Range : false,
-                                                        enableCheckbox: v || prevState.data.num1Range.to !== '' ? true : false
+                                                        enableCheckbox: v && prevState.data.num1Range.to !== '' ? true : false
                                                     };
                                                 }, this.validateNum1Range);
 
@@ -189,7 +189,7 @@ class MainPage extends Component {
                                                             }
                                                         },
                                                         sameAsNum1Range: v || prevState.data.num1Range.from !== '' ? prevState.sameAsNum1Range : false,
-                                                        enableCheckbox: v || prevState.data.num1Range.from !== '' ? true : false
+                                                        enableCheckbox: v && prevState.data.num1Range.from !== '' ? true : false
                                                     }
                                                     
                                                     
