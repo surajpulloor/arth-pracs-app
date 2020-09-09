@@ -123,11 +123,7 @@ class Problem extends Component {
                 <div className="row">
                     <div className="col-md-5 num1">
                         <h4>
-                            {
-                                this.props.num1.toString().length < this.props.num2.toString().length
-                                ? this.props.num1.toString().padStart(this.props.num2.toString().length, '0')
-                                : this.props.num1.toString()
-                            }
+                            {this.props.num1}
                         </h4>
                     </div>
                 </div>
@@ -137,12 +133,11 @@ class Problem extends Component {
                     <div className="col-md-5">
                         <h4>
                             <span>{this.props.op}</span>
-                            <span>
-                            {
-                                this.props.num2.toString().length < this.props.num1.toString().length
-                                ? this.props.num2.toString().padStart(this.props.num1.toString().length, '0')
-                                : this.props.num2.toString()
-                            } 
+                            <span style={{
+                                paddingLeft:
+                                (this.props.num1.toString().length - this.props.num2.toString().length) / 2 * 1.5 - 0.2 + 'rem'
+                            }}>
+                                {this.props.num2}
                             </span>
                                
                         </h4>
