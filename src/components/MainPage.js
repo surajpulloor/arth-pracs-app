@@ -20,6 +20,10 @@ class MainPage extends Component {
                     to: '',
                 },
                 op: '',
+
+                
+                isTimeBound: false,
+                timeBound: ''
             },
 
             sameAsNum1Range: false,
@@ -29,8 +33,13 @@ class MainPage extends Component {
             num1ValidationMessage: '',
             
             num2ValidationFailureTo: false,
-            num2ValidationMessageTo: ''
+            num2ValidationMessageTo: '',
+
+            timeInvalid: false,
+            timeBoundValMsg: ''
         };
+
+        this.ref = React.createRef();
     }
 
     componentDidMount() {
@@ -40,7 +49,14 @@ class MainPage extends Component {
     onSubmit = (e) => {
         e.preventDefault();
 
-        if (this.state.num1ValidationFailure || this.state.num2ValidationFailure || this.state.num2ValidationFailureTo)
+        if (
+            this.state.num1ValidationFailure || 
+            this.state.num2ValidationFailure || 
+            this.state.num2ValidationFailureTo ||
+            
+            this.state.data.isTimeBound &&  
+            this.state.timeInvalid 
+        )
             return false;
 
         // call props.onStart
@@ -113,6 +129,49 @@ class MainPage extends Component {
                 num2ValidationFailureTo: false,
                 num2ValidationMessageTo: ''
             });
+    }
+
+    setTimeBound = () => {
+        this.setState(prevState => ({
+            data: {
+                ...prevState.data,
+                isTimeBound: !prevState.data.isTimeBound,
+                timeBound: ''
+            },
+            timeInvalid: !prevState.timeInvalid,
+            timeBoundValMsg: ''
+        }), () => {
+            this.ref.current.focus();
+        });
+
+    }
+
+
+    setTimeBoundValue = (e) => {
+        e.persist();
+
+        let validMsg = "";
+        let valid = true;
+
+        if (e.target.value === "") {
+            validMsg = "Please enter number";
+            valid = false;
+        } else if (/^\d+\.\d+$/g.test(e.target.value)) {
+            validMsg = "Decimal numbers not allowed";
+            valid = false;
+        } else if (!/^\d+$/g.test(e.target.value)) {
+            validMsg = "Only numbers allowed";
+            valid = false;
+        }
+
+        this.setState(prevState => ({
+            data: {
+                ...prevState.data,
+                timeBound: e.target.value
+            },
+            timeInvalid: !valid,
+            timeBoundValMsg: validMsg
+        }));
     }
 
     render() {
@@ -381,6 +440,45 @@ class MainPage extends Component {
                         <label className="form-check-label" htmlFor="divide">
                             /
                         </label>
+                    </div>
+
+
+                    <hr />
+
+                    <div className="form-check">
+
+                        <input className="form-check-input" type="checkbox" 
+                            name="isTimeBound" id="isTimeBound" 
+                            checked={this.state.data.isTimeBound}
+                            onChange={this.setTimeBound}
+                        />
+
+                        <label className="form-check-label" htmlFor="isTimeBound">
+                            Make it time bound
+                        </label>
+                        
+                    </div>
+
+                    <div className="form-group" style={{display: this.state.data.isTimeBound ? 'block' : 'none'}}>
+                        <div className="form-row">
+                            <div className="col-md-3">
+                                <label htmlFor="timeBoundControl">Enter the time in seconds</label>
+                                <input 
+                                    type="text" 
+                                    className={this.state.timeInvalid ? "form-control is-invalid" : "form-control"}  
+                                    id="timeBoundControl" 
+                                    name="timeBoundControl" 
+                                    ref={this.ref} 
+                                    value={this.state.data.timeBound}
+                                    onChange={this.setTimeBoundValue}
+                                /> 
+                            </div>
+                        </div>
+
+                        <div className="invalid-feedback" style={{display: this.state.timeInvalid ? 'block' : 'none'}}>
+                            {this.state.timeBoundValMsg}
+                        </div>
+                        
                     </div>
 
                     <button type="submit" className="btn btn-primary">Start</button>
