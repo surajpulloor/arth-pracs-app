@@ -170,24 +170,32 @@ class MainPage extends Component {
         let validMsg = "";
         let valid = true;
 
-        if (e.target.value === "") {
+        let inValue = e.target.value;
+
+        if (inValue === "") {
             validMsg = "Please enter number";
             valid = false;
-        } else if (/^\d+\.\d+$/g.test(e.target.value)) {
+        } else if (/^(\d+)?\.\d+$/g.test(inValue)) {
             validMsg = "Decimal numbers not allowed";
             valid = false;
-        } else if (!/^\d+$/g.test(e.target.value)) {
+        } else if (/^\-\d+$/g.test(inValue)) {
+            validMsg = "Negative numbers are not allowed";
+            valid = false;
+        } else if (!/^\d+$/g.test(inValue)) {
             validMsg = "Only numbers allowed";
             valid = false;
-        } else if (parseInt(e.target.value) > 3600) {
+        }  else if (parseInt(inValue) > 3600) {
             validMsg = "Sorry, you cannot practise for more than an hour at a given time";
+            valid = false;
+        } else if (parseInt(inValue) === 0) {
+            validMsg = "Sorry, you cannot enter 0. You'll need some time to solve";
             valid = false;
         }
 
         this.setState(prevState => ({
             data: {
                 ...prevState.data,
-                timeBound: e.target.value
+                timeBound: inValue
             },
             timeInvalid: !valid,
             timeBoundValMsg: validMsg
