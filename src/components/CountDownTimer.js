@@ -59,6 +59,24 @@ class CountDownTimer extends Component {
     }
 
 
+    convertElapsedTime = () => {
+
+        const time = this.convertIntoTime(this.props.startTime - this.state.timeInSeconds);
+
+        let timeFormat = "";
+
+        if (time.min !== 0) {
+            timeFormat = `${time.min}m `;
+        }
+
+        if (time.sec !== 0) {
+            timeFormat += `${time.sec}s`;
+        }
+
+        return timeFormat;
+    }
+
+
     updateTime = () => {
         let min = this.state.min;
         let sec = this.state.sec;
@@ -70,20 +88,6 @@ class CountDownTimer extends Component {
             sec -= 1;
         }
 
-        let timeFormat = "";
-
-        if (min === 0 && sec === 0) {
-            timeFormat = "This was a time bound. You used up all your time.";
-        }
-
-        if (min !== 0) {
-            timeFormat = `${min}m `;
-        }
-
-        if (sec !== 0) {
-            timeFormat += `${sec}s`;
-        }
-
 
         this.setState((state, props) => {
             return {
@@ -92,7 +96,7 @@ class CountDownTimer extends Component {
                 timeInSeconds: state.timeInSeconds - 1
             }
         }, () => {
-            this.props.currentTime(this.state.timeInSeconds, timeFormat);
+            this.props.currentTime(this.state.timeInSeconds, this.convertElapsedTime());
         });
 
     }
