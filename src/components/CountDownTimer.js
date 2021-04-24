@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import '../styles/CountDownTimer.css';
 
 class CountDownTimer extends Component {
 
@@ -23,6 +24,7 @@ class CountDownTimer extends Component {
                 timeInSeconds: props.startTime
             }
         }, () => {
+            this.updateTime();
             this.interval = setInterval(this.updateTime, 1000);
         });
     }
@@ -106,8 +108,12 @@ class CountDownTimer extends Component {
     render() {
         return (
             <h3>
-                {(this.state.min < 10 ? '0' : '') + this.state.min}:
-                {(this.state.sec < 10 ? '0' : '') + this.state.sec}
+                <span>You have left: </span>
+                <span className={this.state.min < 5 ? (this.state.min === 0 ? "countdown-red" : "countdown-orange") : ""}>
+                    {(this.state.min < 10 ? '0' : '') + this.state.min}:
+                    {(this.state.sec < 10 ? '0' : '') + this.state.sec}
+                </span>
+                
             </h3>
         );
     }
