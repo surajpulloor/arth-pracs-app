@@ -76,11 +76,16 @@ class CountDownTimer extends Component {
         }
 
         let timeFormat = "";
-        if (min != 0) {
+
+        if (min === 0 && sec === 0) {
+            timeFormat = "This was a time bound. You used up all your time.";
+        }
+
+        if (min !== 0) {
             timeFormat = `${min}m `;
         }
 
-        if (sec != 0) {
+        if (sec !== 0) {
             timeFormat += `${sec}s`;
         }
 
