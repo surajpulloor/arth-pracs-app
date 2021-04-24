@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import { convertIntoTime } from '../helper/convertTime';
 
 class CountDownTimer extends Component {
 
@@ -17,7 +16,7 @@ class CountDownTimer extends Component {
 
     componentDidMount() {
         this.setState((state, props) => {
-            const time = convertIntoTime(props.startTime);
+            const time = this.convertIntoTime(props.startTime);
             return {
                 min: time.min,
                 sec: time.sec,
@@ -28,11 +27,41 @@ class CountDownTimer extends Component {
         });
     }
 
+
     componentWillUnmount() {
         clearInterval(this.interval);
     }
 
     
+
+    convertIntoTime = (timeInSeconds) => {
+
+        let minutes = 0;
+        let seconds = 0;
+    
+        if (timeInSeconds > 60) {
+            timeInSeconds /= 60;
+    
+            minutes = parseInt(timeInSeconds);
+            seconds = timeInSeconds - minutes;
+    
+            if (seconds !== 0) {
+                seconds *= 100;
+                seconds = parseInt(seconds);
+            }
+    
+    
+        } else {
+            seconds = timeInSeconds;
+        }
+    
+        
+    
+        return {
+            min: minutes,
+            sec: seconds
+        };
+    }
 
 
     updateTime = () => {

@@ -4,7 +4,6 @@ import { withRouter } from 'react-router-dom';
 import VisibleProblem from '../containers/VisibleProblem';
 import StopWatch from './Stopwatch';
 import CountDownTimer from './CountDownTimer';
-import { convertSecondsToTimeFormat } from '../helper/convertTime';
 
 class Practise extends Component {
 
