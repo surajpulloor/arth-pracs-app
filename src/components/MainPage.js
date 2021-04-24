@@ -162,6 +162,9 @@ class MainPage extends Component {
         } else if (!/^\d+$/g.test(e.target.value)) {
             validMsg = "Only numbers allowed";
             valid = false;
+        } else if (parseInt(e.target.value) > 3600) {
+            validMsg = "Sorry, you cannot practise for more than an hour at a given time";
+            valid = false;
         }
 
         this.setState(prevState => ({
