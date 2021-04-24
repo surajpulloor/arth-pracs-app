@@ -91,12 +91,7 @@ class Practise extends Component {
         this.setState({ stopStopWatch: true, stopProblemTimer: true, stopCountDown: true });
 
         if (window.confirm("Do you want to stop?")) {
-            // push rightAns and solvedTime
-            this.props.addRightAns(this.state.totalRightAns);
-            this.props.addTimer(this.state.solvedTime);
-            
-            this.props.history.push('/summary');
-
+            this.gotoSummary();
             
         } else {
             this.setState({ stopStopWatch: false, stopProblemTimer: false, stopCountDown: false });
@@ -104,17 +99,24 @@ class Practise extends Component {
     }
 
 
+    gotoSummary = () => {
+        this.props.addRightAns(this.state.totalRightAns);
+        this.props.addTimer(this.state.solvedTime);
+        
+        this.props.history.push('/summary');
+    }
     
 
 
-    finishPractise = (time) => {
-        if (time === 0) {
-            // push rightAns and solvedTime
-            this.props.addRightAns(this.state.totalRightAns);
-            this.props.addTimer(convertSecondsToTimeFormat(this.props.setupInfo.timeBound));
-            
-            this.props.history.push('/summary');
-        }
+    finishPractise = (time, timeInFormat) => {
+        
+        this.setState({
+            solvedTime: timeInFormat
+        }, () => {
+            if (time === 0) {
+                this.gotoSummary(); 
+            }
+        })
     }
 
     render() {
