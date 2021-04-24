@@ -110,8 +110,8 @@ class CountDownTimer extends Component {
             <h3>
                 <span>You have left: </span>
                 <span className={this.state.min < 5 ? (this.state.min === 0 ? "countdown-red" : "countdown-orange") : ""}>
-                    {(this.state.min < 10 ? '0' : '') + this.state.min}:
-                    {(this.state.sec < 10 ? '0' : '') + this.state.sec}
+                    {this.state.min !== 0 ? ((this.state.min < 10 ? '0' : '') + this.state.min + ":") : ""}
+                    {(this.state.sec < 10 && this.state.min !== 0 ? '0' : '') + this.state.sec + (this.state.min === 0 ? "s" : "")}
                 </span>
                 
             </h3>
