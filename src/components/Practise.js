@@ -3,6 +3,8 @@ import { withRouter } from 'react-router-dom';
 
 import VisibleProblem from '../containers/VisibleProblem';
 import StopWatch from './Stopwatch';
+import CountDownTimer from './CountDownTimer';
+import { convertSecondsToTimeFormat } from '../helper/convertTime';
 
 class Practise extends Component {
 
@@ -20,6 +22,8 @@ class Practise extends Component {
 
             solvedTime: '',
             totalRightAns: 0,
+
+            stopCountDown: false,
         };
     }
 
@@ -84,7 +88,7 @@ class Practise extends Component {
 
     stop = () => {
 
-        this.setState({ stopStopWatch: true, stopProblemTimer: true });
+        this.setState({ stopStopWatch: true, stopProblemTimer: true, stopCountDown: true });
 
         if (window.confirm("Do you want to stop?")) {
             // push rightAns and solvedTime
@@ -95,7 +99,21 @@ class Practise extends Component {
 
             
         } else {
-            this.setState({ stopStopWatch: false, stopProblemTimer: false });
+            this.setState({ stopStopWatch: false, stopProblemTimer: false, stopCountDown: false });
+        }
+    }
+
+
+    
+
+
+    finishPractise = (time) => {
+        if (time === 0) {
+            // push rightAns and solvedTime
+            this.props.addRightAns(this.state.totalRightAns);
+            this.props.addTimer(convertSecondsToTimeFormat(this.props.setupInfo.timeBound));
+            
+            this.props.history.push('/summary');
         }
     }
 
@@ -116,7 +134,17 @@ class Practise extends Component {
                             </div>
 
                             <div className="col-md-6">
-                                <StopWatch stop={this.state.stopStopWatch} currentTime={(time) => this.setState({solvedTime: time})} />
+                                { 
+                                    this.props.setupInfo.isTimeBound 
+
+                                    ?
+
+                                    <CountDownTimer startTime={this.props.setupInfo.timeBound} stop={this.state.stopCountDown} currentTime={this.finishPractise} />
+
+                                    :
+                                    
+                                    <StopWatch stop={this.state.stopStopWatch} currentTime={(time) => this.setState({solvedTime: time})} />
+                                }
                             </div>
                         </div>
                         <VisibleProblem num1={this.state.num1} num2={this.state.num2}
