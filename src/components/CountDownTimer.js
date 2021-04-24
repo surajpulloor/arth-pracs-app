@@ -46,6 +46,14 @@ class CountDownTimer extends Component {
             sec -= 1;
         }
 
+        let timeFormat = "";
+        if (min != 0) {
+            timeFormat = `${min}m `;
+        }
+
+        if (sec != 0) {
+            timeFormat += `${sec}s`;
+        }
 
 
         this.setState((state, props) => {
@@ -55,7 +63,7 @@ class CountDownTimer extends Component {
                 timeInSeconds: state.timeInSeconds - 1
             }
         }, () => {
-            this.props.currentTime(this.state.timeInSeconds);
+            this.props.currentTime(this.state.timeInSeconds, timeFormat);
         });
 
     }
