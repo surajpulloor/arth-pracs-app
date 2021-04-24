@@ -58,12 +58,29 @@ class MainPage extends Component {
             this.state.timeInvalid 
         )
             return false;
+        
 
-        // call props.onStart
-        this.props.onSetup(this.state.data);
+        // Convert timeBound to an int before going to the next page
+        this.setState((state, props) => {
+
+            if (state.data.isTimeBound) {
+                return {
+                    data: {
+                        ...state.data,
+                        timeBound: parseInt(state.data.timeBound)
+                    }
+                }
+            }
+            
+        }, () => {
+            // call props.onStart
+            this.props.onSetup(this.state.data);
 
 
-        this.props.history.push('/practise');
+            this.props.history.push('/practise');
+        });
+
+        
     }
 
     getChoiceValue = (e) => {
