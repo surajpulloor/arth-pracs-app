@@ -42,16 +42,9 @@ class CountDownTimer extends Component {
         let seconds = 0;
     
         if (timeInSeconds > 60) {
-            timeInSeconds /= 60;
     
-            minutes = parseInt(timeInSeconds);
-            seconds = timeInSeconds - minutes;
-    
-            if (seconds !== 0) {
-                seconds *= 100;
-                seconds = parseInt(seconds);
-            }
-    
+            minutes = parseInt(timeInSeconds / 60);
+            seconds = timeInSeconds - minutes * 60;
     
         } else {
             seconds = timeInSeconds;
