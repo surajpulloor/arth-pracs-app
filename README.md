@@ -4,7 +4,8 @@ Can be used by anyone who wants to flex their brain muscels. The app can be acce
 # Features
 * All the four fundamental operations(Addition/Subtraction/Multiplication/Division)
 * The exercise's are timed.
-* The result's of your exercise is given in a clean format.
+* The exercise's can be made time bound
+* The result's of your exercise is given in a grid format for larger screens.
 * Can give any range for the two numbers (from 1 to 1000..)
 * Has no backend, everything happens on the client
 
@@ -32,10 +33,6 @@ Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
 The page will reload if you make edits.<br />
 You will also see any lint errors in the console.
 
-### `npm test`
-
-Launches the test runner in the interactive watch mode.<br />
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
 
 ### `npm run build`
 
