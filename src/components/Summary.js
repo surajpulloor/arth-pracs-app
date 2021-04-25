@@ -2,7 +2,7 @@ import React from 'react';
 
 import { Link } from 'react-router-dom';
 
-import Problem from './Problem';
+import ProblemList from "./ProblemList";
 
 const Summary = (props) => (
     <div>
@@ -28,16 +28,7 @@ const Summary = (props) => (
                 
                 </nav>
 
-                <div style={{ marginTop: '60px' }}>
-                    {
-                        props.problems.map((problem, index) =>  
-                            <Problem num1={problem.num1} num2={problem.num2}
-                                    op={problem.op} res={problem.res} timeTaken={problem.timeTaken}
-                                    id={index + 1} showResult={true} />
-                        )
-
-                    }
-                </div>
+                <ProblemList problems={props.problems} />
             </div>
 
             :
