@@ -57,7 +57,7 @@ class Practise extends Component {
                     )
                 ) + this.props.setupInfo.num2Range.from;
 
-        } while (num1 <= num2);
+        } while (num2 > num1);
         
 
         this.setState((state, props) => {
