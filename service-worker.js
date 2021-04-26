@@ -14,7 +14,7 @@
 importScripts("https://storage.googleapis.com/workbox-cdn/releases/4.3.1/workbox-sw.js");
 
 importScripts(
-  "/arth-pracs-app/precache-manifest.b6c73aff724b966d3045248245f41cc3.js"
+  "/arth-pracs-app/precache-manifest.a5abd80b898f8ddde0b876adad8e61ed.js"
 );
 
 self.addEventListener('message', (event) => {
