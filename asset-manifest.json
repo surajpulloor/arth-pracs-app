@@ -1,25 +1,25 @@
 {
   "files": {
     "main.css": "/arth-pracs-app/static/css/main.57d10e9d.chunk.css",
-    "main.js": "/arth-pracs-app/static/js/main.3df698a3.chunk.js",
-    "main.js.map": "/arth-pracs-app/static/js/main.3df698a3.chunk.js.map",
+    "main.js": "/arth-pracs-app/static/js/main.f1d781a3.chunk.js",
+    "main.js.map": "/arth-pracs-app/static/js/main.f1d781a3.chunk.js.map",
     "runtime-main.js": "/arth-pracs-app/static/js/runtime-main.693a094b.js",
     "runtime-main.js.map": "/arth-pracs-app/static/js/runtime-main.693a094b.js.map",
     "static/css/2.af3c1da9.chunk.css": "/arth-pracs-app/static/css/2.af3c1da9.chunk.css",
-    "static/js/2.e7c470a3.chunk.js": "/arth-pracs-app/static/js/2.e7c470a3.chunk.js",
-    "static/js/2.e7c470a3.chunk.js.map": "/arth-pracs-app/static/js/2.e7c470a3.chunk.js.map",
+    "static/js/2.479b8803.chunk.js": "/arth-pracs-app/static/js/2.479b8803.chunk.js",
+    "static/js/2.479b8803.chunk.js.map": "/arth-pracs-app/static/js/2.479b8803.chunk.js.map",
     "index.html": "/arth-pracs-app/index.html",
-    "precache-manifest.a5abd80b898f8ddde0b876adad8e61ed.js": "/arth-pracs-app/precache-manifest.a5abd80b898f8ddde0b876adad8e61ed.js",
+    "precache-manifest.4b62b168aa3d6bb4f07c9db011306763.js": "/arth-pracs-app/precache-manifest.4b62b168aa3d6bb4f07c9db011306763.js",
     "service-worker.js": "/arth-pracs-app/service-worker.js",
     "static/css/2.af3c1da9.chunk.css.map": "/arth-pracs-app/static/css/2.af3c1da9.chunk.css.map",
     "static/css/main.57d10e9d.chunk.css.map": "/arth-pracs-app/static/css/main.57d10e9d.chunk.css.map",
-    "static/js/2.e7c470a3.chunk.js.LICENSE.txt": "/arth-pracs-app/static/js/2.e7c470a3.chunk.js.LICENSE.txt"
+    "static/js/2.479b8803.chunk.js.LICENSE.txt": "/arth-pracs-app/static/js/2.479b8803.chunk.js.LICENSE.txt"
   },
   "entrypoints": [
     "static/js/runtime-main.693a094b.js",
     "static/css/2.af3c1da9.chunk.css",
-    "static/js/2.e7c470a3.chunk.js",
+    "static/js/2.479b8803.chunk.js",
     "static/css/main.57d10e9d.chunk.css",
-    "static/js/main.3df698a3.chunk.js"
+    "static/js/main.f1d781a3.chunk.js"
   ]
 }
